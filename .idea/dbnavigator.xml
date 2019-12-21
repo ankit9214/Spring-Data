@@ -25,14 +25,14 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8">
-        <schema name="ems" object-types="dataset trigger, constraint, column, procedure, view, index, table, function" />
+        <schema name="ems" object-types="procedure, view, table, function" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8">
       <console name="Connection" type="STANDARD" schema="ems" session="Main"><![CDATA[insert into address values (1001, 'PUNE', '411057');
-insert into employee values (101,'PUNE', 'HCADM', 'Ankit', 1001)
+insert into employee values (101,'PUNE', 'HCADM', 'Ankit', 1001);
 
 select * from employee
 select * from address]]></console>
@@ -45,6 +45,7 @@ select * from address]]></console>
     <connection id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8" dataset="ems.Address" active-filter-id="" />
     <filter-actions connection-id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8" dataset="sys.sys_config" active-filter-id="" />
     <filter-actions connection-id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8" dataset="ems.EMPLOYEE" active-filter-id="a43633ed-8ee7-447d-821a-efdaf579fe39">
       <filter id="a43633ed-8ee7-447d-821a-efdaf579fe39" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
@@ -92,7 +93,7 @@ select * from address]]></console>
           <deprecated-pwd value="Y2E0MzlmNjIwNQ==" />
         </database>
         <properties>
-          <auto-commit value="false" />
+          <auto-commit value="true" />
         </properties>
         <ssh-settings>
           <active value="false" />

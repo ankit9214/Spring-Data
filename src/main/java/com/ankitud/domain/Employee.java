@@ -6,16 +6,26 @@ public class Employee {
     private String empName;
     private String department;
     private String baseLocation;
+    Address address;
 
     public Employee(){
 
     }
 
-    public Employee(int empId, String empName, String department, String baseLocation) {
+    public Employee(int empId, String empName, String department, String baseLocation, Address address) {
         this.empId = empId;
         this.empName = empName;
         this.department = department;
         this.baseLocation = baseLocation;
+        this.address = address;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getBaseLocation() {
@@ -56,6 +66,8 @@ public class Employee {
                 "empId=" + empId +
                 ", empName='" + empName + '\'' +
                 ", department='" + department + '\'' +
+                ", baseLocation='" + baseLocation + '\'' +
+                ", address=" + address +
                 '}';
     }
 }

@@ -1,5 +1,8 @@
 package com.ankitud.repositories;
 
-public interface EmployeeRepository {
+import com.ankitud.domain.Employee;
 
+public interface EmployeeRepository {
+    // Method to update Employee Base Location
+    public void update(int empId, String baseLocation);
 }
