@@ -1,8 +1,7 @@
 package com.ankitud.repositories;
 
 import com.ankitud.domain.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EmployeeRepository {
-    // Method to update Employee Base Location
-    public void update(int empId, String baseLocation);
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 }

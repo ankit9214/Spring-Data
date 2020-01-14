@@ -2,9 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/data/jpa
+            http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd
             http://www.springframework.org/schema/tx
@@ -12,8 +15,9 @@
 
     <!-- Define Service and Repository beans using auto scan feature of Spring -->
    <context:component-scan base-package="com.ankitud"/>
-    <!--To enable transaction related annotations -->
-    <tx:annotation-driven />
+   <jpa:repositories base-package="com.ankitud.repositories"/>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
 
     <!-- Define DataSource bean using DriverManagerDataSource class of Spring -->
    <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -23,6 +27,17 @@
        <property name="password" value="${jdbc.password}"/>
    </bean>
 
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="generateDdl" value="${hibernate.generateddl}"/>
+        <property name="databasePlatform" value="${hibernate.dialect=}"/>
+    </bean>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="datasource"/>
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="packagesToScan" value="com.ankitud"/>
+    </bean>
+
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="ignoreUnresolvablePlaceholders" value="true" />
         <property name="localOverride" value="false" />
@@ -31,11 +46,6 @@
                 <value>classpath:application.properties</value>
             </list>
         </property>
-    </bean>
-
-    <!-- Define Spring transaction manager bean -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="datasource" />
     </bean>
 
 </beans>

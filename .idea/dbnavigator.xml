@@ -25,17 +25,27 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8">
-        <schema name="ems" object-types="procedure, view, table, function" />
+        <schema name="ems" object-types="view, procedure, constraint, dataset trigger, function, table, column, index" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8">
-      <console name="Connection" type="STANDARD" schema="ems" session="Main"><![CDATA[insert into address values (1001, 'PUNE', '411057');
-insert into employee values (101,'PUNE', 'HCADM', 'Ankit', 1001);
+      <console name="Connection" type="STANDARD" schema="ems" session="Main"><![CDATA[CREATE TABLE Bank(
+   BankId   INT NOT NULL,
+   BankName VARCHAR(25) NOT NULL,
+   TotalTransfers INT,
+   PRIMARY KEY (BankId)
+);
 
-select * from employee
-select * from address]]></console>
+CREATE TABLE Account(
+   AccountId   INT NOT NULL,
+   CustomerName VARCHAR(25) NOT NULL,
+   Balance INT unsigned,
+   PRIMARY KEY (AccountId)
+);
+
+select * from Employee;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -47,9 +57,11 @@ select * from address]]></console>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8" dataset="ems.Address" active-filter-id="" />
     <filter-actions connection-id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8" dataset="sys.sys_config" active-filter-id="" />
+    <filter-actions connection-id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8" dataset="ems.Account" active-filter-id="" />
     <filter-actions connection-id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8" dataset="ems.EMPLOYEE" active-filter-id="a43633ed-8ee7-447d-821a-efdaf579fe39">
       <filter id="a43633ed-8ee7-447d-821a-efdaf579fe39" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>
+    <filter-actions connection-id="cd544b6d-e1ea-4968-a9a6-b5b1aea482d8" dataset="ems.Employee" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -93,7 +105,7 @@ select * from address]]></console>
           <deprecated-pwd value="Y2E0MzlmNjIwNQ==" />
         </database>
         <properties>
-          <auto-commit value="true" />
+          <auto-commit value="false" />
         </properties>
         <ssh-settings>
           <active value="false" />
@@ -126,7 +138,7 @@ select * from address]]></console>
           <max-connection-pool-size value="7" />
           <alternative-statement-delimiter value="" />
         </details>
-        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="true">
           <object-type-filter use-master-settings="true">
             <object-type name="SCHEMA" enabled="true" />
             <object-type name="USER" enabled="true" />
