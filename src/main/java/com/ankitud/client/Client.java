@@ -1,16 +1,18 @@
 package com.ankitud.client;
 
+import com.ankitud.config.AppConfig;
 import com.ankitud.domain.Employee;
 import com.ankitud.services.EmployeeService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 
 import java.util.Scanner;
 
 public class Client {
 
     public static void main(String args[]){
-        AbstractApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+        AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
 
         Employee emp1 = new Employee(1001, "Susan", "Engineering");

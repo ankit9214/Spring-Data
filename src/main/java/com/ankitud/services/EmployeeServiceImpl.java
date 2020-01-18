@@ -5,6 +5,8 @@ import com.ankitud.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service("employeeService")
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -19,7 +21,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void removeEmployee(int empId) {
-            employeeRepository.deleteById(empId);
-            System.out.println("Record deleted successfuly!!");
+        Optional<Employee> opt = employeeRepository.findById(empId);
+        if(opt.isPresent()){
+            Employee emp = opt.get();
+            employeeRepository.delete(emp);
+        }
+    }
+
+    public Employee findEmployee(int empId){
+        Optional<Employee> opt = employeeRepository.findById(empId);
+        if(opt.isPresent())
+            return opt.get();
+        return null;
     }
 }
